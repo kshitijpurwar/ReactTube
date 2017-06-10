@@ -25,6 +25,7 @@
     "autoprefixer": "^7.1.1",
     "node-sass": "^4.5.3",
     "postcss-cli": "^4.0.0",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "youtube-api-search": "0.0.5"
   }
 }
