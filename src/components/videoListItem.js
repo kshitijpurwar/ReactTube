@@ -1,13 +1,16 @@
 
 const VideoListItem = (props) => {
+
   const video = props.video;
   const onVideoSelect = props.onVideoSelect;
+
   const imageURL = video.snippet.thumbnails.high.url;
   const title = video.snippet.title;
   const description = video.snippet.description;
   const videoURL = `https://www.youtube.com/watch?v=${props.video.id.videoId}`;
 
   console.log(video);
+  
   return (
     <li onClick = { () => onVideoSelect(video) }  className="videoItem">
       <div className="thumbnail">

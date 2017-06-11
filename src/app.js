@@ -4,6 +4,8 @@ import VideoList from "./components/videoList";
 import VideoDetail from "./components/videoDetail";
 
 import YTSearch from "youtube-api-search";
+import _ from "lodash";
+
 
 // youTube API Key
 const YOUTUBE_API_KEY = 'AIzaSyAOnseq7l_Sgp6dCuEIr8lqquxydixEB0k';
@@ -23,17 +25,23 @@ class App extends React.Component {
       selectedVideo: null
      };
 
-    YTSearch({key: YOUTUBE_API_KEY, term : "Jonita Gandhi"},(videosData) => {
+    this.videoSearch('Baby do');
+
+  }
+
+  videoSearch(searchQuery){
+    YTSearch({key: YOUTUBE_API_KEY, term : searchQuery },(videosData) => {
       this.setState({
         videos : videosData,
         selectedVideo: videosData[0]
        })
       console.log( videosData);
     })
-
   }
 
   render() {
+    const videoSearch = _.debounce( query => { this.videoSearch(query) }, 1000)
+
     return (
       <div className="container">
         <div className="main">
@@ -41,7 +49,9 @@ class App extends React.Component {
         </div>
 
         <div className="aside">
-          <SearchBar/>
+          <SearchBar
+            onSearchQueryChange = {videoSearch}
+          />
           <VideoList
             onVideoSelect = { selectedVideo => this.setState({ selectedVideo: selectedVideo }) }
             videos = {this.state.videos}
