@@ -18,10 +18,16 @@ class App extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { videos : [] };
+    this.state = {
+      videos : [],
+      selectedVideo: null
+     };
 
     YTSearch({key: YOUTUBE_API_KEY, term : "Jonita Gandhi"},(videosData) => {
-      this.setState({ videos : videosData })
+      this.setState({
+        videos : videosData,
+        selectedVideo: videosData[0]
+       })
       console.log( videosData);
     })
 
@@ -29,10 +35,19 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <SearchBar/>
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos = {this.state.videos}/>
+      <div className="container">
+        <div className="main">
+          <VideoDetail video={this.state.selectedVideo}/>
+        </div>
+
+        <div className="aside">
+          <SearchBar/>
+          <VideoList
+            onVideoSelect = { selectedVideo => this.setState({ selectedVideo: selectedVideo }) }
+            videos = {this.state.videos}
+          />
+        </div>
+
       </div>
     )
   };

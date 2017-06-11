@@ -18,9 +18,7 @@ class SearchBar extends React.Component {
           value={this.state.term}
           onChange={event => this.setState({ term : event.target.value }) }
         />
-        <p>
-          The value of input is  <span className="searchTerm"> {this.state.term}</span>
-        </p>
+
       </div>
     )
   }
@@ -38,5 +36,8 @@ class SearchBar extends React.Component {
 // This is a functional component, does nothing, very dumb just returns some JSX
 // const SearchBar = () => <input/>;
 
+// <p>
+//   The value of input is  <span className="searchTerm"> {this.state.term}</span>
+// </p>
 
 export default SearchBar;

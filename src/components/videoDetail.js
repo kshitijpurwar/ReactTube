@@ -2,7 +2,7 @@ const VideoDetail = (props) => {
   const video = props.video;
 
   if(!video){
-    return <div> Loading... </div>;
+    return (<div> Loading... </div>);
   }
 
 
@@ -22,11 +22,12 @@ const VideoDetail = (props) => {
         <h2>
           {video.snippet.title}
         </h2>
+        <hr/>
         <p>
           {video.snippet.description}
         </p>
       </div>
-      <hr/>
+
     </div>
   );
 };

@@ -1116,10 +1116,16 @@ var App = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-    _this.state = { videos: [] };
+    _this.state = {
+      videos: [],
+      selectedVideo: null
+    };
 
     (0, _youtubeApiSearch2.default)({ key: YOUTUBE_API_KEY, term: "Jonita Gandhi" }, function (videosData) {
-      _this.setState({ videos: videosData });
+      _this.setState({
+        videos: videosData,
+        selectedVideo: videosData[0]
+      });
       console.log(videosData);
     });
 
@@ -1129,12 +1135,27 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
         "div",
-        null,
-        React.createElement(_searchBar2.default, null),
-        React.createElement(_videoDetail2.default, { video: this.state.videos[0] }),
-        React.createElement(_videoList2.default, { videos: this.state.videos })
+        { className: "container" },
+        React.createElement(
+          "div",
+          { className: "main" },
+          React.createElement(_videoDetail2.default, { video: this.state.selectedVideo })
+        ),
+        React.createElement(
+          "div",
+          { className: "aside" },
+          React.createElement(_searchBar2.default, null),
+          React.createElement(_videoList2.default, {
+            onVideoSelect: function onVideoSelect(selectedVideo) {
+              return _this2.setState({ selectedVideo: selectedVideo });
+            },
+            videos: this.state.videos
+          })
+        )
       );
     }
   }]);
@@ -1204,18 +1225,7 @@ var SearchBar = function (_React$Component) {
           onChange: function onChange(event) {
             return _this2.setState({ term: event.target.value });
           }
-        }),
-        React.createElement(
-          "p",
-          null,
-          "The value of input is  ",
-          React.createElement(
-            "span",
-            { className: "searchTerm" },
-            " ",
-            this.state.term
-          )
-        )
+        })
       );
     }
 
@@ -1235,6 +1245,9 @@ var SearchBar = function (_React$Component) {
 // This is a functional component, does nothing, very dumb just returns some JSX
 // const SearchBar = () => <input/>;
 
+// <p>
+//   The value of input is  <span className="searchTerm"> {this.state.term}</span>
+// </p>
 
 exports.default = SearchBar;
 
@@ -1275,13 +1288,13 @@ var VideoDetail = function VideoDetail(props) {
         null,
         video.snippet.title
       ),
+      React.createElement("hr", null),
       React.createElement(
         "p",
         null,
         video.snippet.description
       )
-    ),
-    React.createElement("hr", null)
+    )
   );
 };
 
@@ -1303,7 +1316,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var VideoList = function VideoList(props) {
 
   var videoItems = props.videos.map(function (video) {
-    return React.createElement(_videoListItem2.default, { key: video.etag, video: video });
+    return React.createElement(_videoListItem2.default, {
+      onVideoSelect: props.onVideoSelect,
+      key: video.etag,
+      video: video });
   });
   return React.createElement(
     "ul",
@@ -1323,6 +1339,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var VideoListItem = function VideoListItem(props) {
   var video = props.video;
+  var onVideoSelect = props.onVideoSelect;
   var imageURL = video.snippet.thumbnails.high.url;
   var title = video.snippet.title;
   var description = video.snippet.description;
@@ -1331,25 +1348,29 @@ var VideoListItem = function VideoListItem(props) {
   console.log(video);
   return React.createElement(
     "li",
-    { className: "videoItem" },
+    { onClick: function onClick() {
+        return onVideoSelect(video);
+      }, className: "videoItem" },
     React.createElement(
-      "a",
-      { href: videoURL, target: "_blank", title: "Click to open on a New Tab" },
+      "div",
+      { className: "thumbnail" },
       React.createElement("img", { src: imageURL }),
       React.createElement(
         "h3",
         { className: "title" },
         title
       )
-    ),
-    React.createElement("hr", null),
-    React.createElement(
-      "p",
-      { className: "description" },
-      description
     )
   );
 };
+
+// <p className="description">{description}</p>
+
+// <p>
+//   <a href={videoURL} target="_blank" title="Click to open on a New Tab">
+//   Open in youTube
+//   </a>
+// </p>
 
 exports.default = VideoListItem;
 
