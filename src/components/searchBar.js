@@ -1,13 +1,12 @@
 
 
 // This is a class based component
-class SearchBar extends React.Component{
+class SearchBar extends React.Component {
 
   constructor(props){
-    
     super(props);
 
-    this.state = { term : "Find Something cool today" };
+    this.state = { term : "Gangnam Style" };
 
   }
 
@@ -19,7 +18,9 @@ class SearchBar extends React.Component{
           value={this.state.term}
           onChange={event => this.setState({ term : event.target.value }) }
         />
-          The value of input is <span className="searchTerm">{this.state.term}</span>
+        <p>
+          The value of input is  <span className="searchTerm"> {this.state.term}</span>
+        </p>
       </div>
     )
   }

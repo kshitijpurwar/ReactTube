@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:600|Nunito')
+
+$muli:'Muli', sans-serif
+$nunito: 'Nunito', sans-serif
+
 *
   font-weight: 400
   box-sizing: border-box
+  font-family: $muli
+
+p
+  font-family: $nunito
 
 html
   min-height: 100%
@@ -11,18 +20,18 @@ body
   font-family: sans-serif
   position: relative
   margin: 0
-  padding: 0 0 60px
-  height: 100%
+  padding: 0
+  min-height: 100%
 
 p.developer
-  position: fixed
+  position: absolute
   text-align: center
   background-color: #e4e4e4
   width: 100%
   padding: 1em
   font-size: 0.9rem
-  bottom: 0
-  left: 0
+  // bottom: 0
+  // left: 0
   margin: 0
   // border-top: 4px solid #fff
   box-shadow: 0 -3px 10px rgba(0,0,0,0.3)
@@ -41,22 +50,62 @@ p.developer
 input
   display: block
   height: 40px
-  margin: 0px auto 40px
+  // margin: 0px auto 40px
   outline: 0
   border: none
   width: 100%
   padding: 30px 10px
-  font-size: 28px
+  font-size: 22px
   text-align: left
-  color: #795548
-  border-left: 5px solid #fff
+  color: #585858
+  border-bottom: 2px solid #fff
   transition: all 0.3s ease-in-out
 
   &:focus
-    border-left: 5px solid #41ec48
-
+    border-bottom: 2px solid #7b7b7b
+p
+  padding: 0 0px
+  line-height: 2rem
 .searchTerm
-  color: darken(red, 20%)
+  color: darken(#23a028, 5%)
+
+.videoListing
+  padding: 0
+  list-style-type: none
+  img
+    width: 100%
+    display: block
+    margin: 0 auto
+    filter: opacity(1)
+    transition: all 0.3s ease-in-out
+  li
+    background: #fff
+    padding: 2em
+
+  li:not(:last-child)
+    margin-bottom: 60px
+    // border-bottom: 2px solid #9E9E9E
+  p
+    font-size: 0.8rem
+    line-height: 1.6
+    margin-bottom: 0
+  a
+    text-decoration: none
+    color: darken(orange, 30%)
+    &:hover
+      img
+        filter: opacity(0.8)
+
+
+
+.video
+  iframe
+    width: 100%
+    height: 400px
+    border: 0
+    outline: 0
+
+
 
 // Responsive rules
 @media (max-width: 560px)
@@ -70,4 +119,4 @@ input
   html
     font-size: 10px
   .root
-    width: 300px    
+    width: 300px
