@@ -10,7 +10,7 @@ const VideoListItem = (props) => {
   const videoURL = `https://www.youtube.com/watch?v=${props.video.id.videoId}`;
 
   console.log(video);
-  
+
   return (
     <li onClick = { () => onVideoSelect(video) }  className="videoItem">
       <div className="thumbnail">

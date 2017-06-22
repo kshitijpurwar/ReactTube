@@ -18213,7 +18213,7 @@ var App = function (_React$Component) {
       selectedVideo: null
     };
 
-    _this.videoSearch('Baby do');
+    _this.videoSearch('Jonita gandhi');
 
     return _this;
   }
@@ -18238,7 +18238,7 @@ var App = function (_React$Component) {
 
       var videoSearch = _lodash2.default.debounce(function (query) {
         _this3.videoSearch(query);
-      }, 1000);
+      }, 600);
 
       return React.createElement(
         "div",
@@ -18252,14 +18252,12 @@ var App = function (_React$Component) {
           "div",
           { className: "aside" },
           React.createElement(_searchBar2.default, {
-            onSearchQueryChange: videoSearch
-          }),
+            onSearchQueryChange: videoSearch }),
           React.createElement(_videoList2.default, {
             onVideoSelect: function onVideoSelect(selectedVideo) {
               return _this3.setState({ selectedVideo: selectedVideo });
             },
-            videos: this.state.videos
-          })
+            videos: this.state.videos })
         )
       );
     }
@@ -18351,7 +18349,7 @@ var SearchBar = function (_React$Component) {
 // This is a functional component, does nothing, very dumb just returns some JSX
 // const SearchBar = () => <input/>;
 
-// <p>
+// <p
 //   The value of input is  <span className="searchTerm"> {this.state.term}</span>
 // </p>
 

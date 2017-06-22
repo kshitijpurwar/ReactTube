@@ -25,7 +25,7 @@ class App extends React.Component {
       selectedVideo: null
      };
 
-    this.videoSearch('Baby do');
+    this.videoSearch('Jonita gandhi');
 
   }
 
@@ -40,22 +40,22 @@ class App extends React.Component {
   }
 
   render() {
-    const videoSearch = _.debounce( query => { this.videoSearch(query) }, 1000)
+    const videoSearch = _.debounce( query => { this.videoSearch(query) }, 600)
 
     return (
       <div className="container">
+
         <div className="main">
           <VideoDetail video={this.state.selectedVideo}/>
         </div>
 
         <div className="aside">
           <SearchBar
-            onSearchQueryChange = {videoSearch}
-          />
+            onSearchQueryChange = {videoSearch}/>
+
           <VideoList
             onVideoSelect = { selectedVideo => this.setState({ selectedVideo: selectedVideo }) }
-            videos = {this.state.videos}
-          />
+            videos = {this.state.videos}/>
         </div>
 
       </div>
