@@ -18213,7 +18213,7 @@ var App = function (_React$Component) {
       selectedVideo: null
     };
 
-    _this.videoSearch('Jonita gandhi');
+    _this.videoSearch('Darude Sandstorm');
 
     return _this;
   }
@@ -18310,7 +18310,7 @@ var SearchBar = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this, props));
 
-    _this.state = { term: "Jonita Gandhi" };
+    _this.state = { term: "Darude Sandstorm" };
 
     return _this;
   }

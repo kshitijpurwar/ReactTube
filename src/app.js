@@ -25,7 +25,7 @@ class App extends React.Component {
       selectedVideo: null
      };
 
-    this.videoSearch('Jonita gandhi');
+    this.videoSearch('Darude Sandstorm');
 
   }
 
